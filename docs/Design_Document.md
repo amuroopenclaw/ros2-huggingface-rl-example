@@ -81,3 +81,14 @@ ros2-huggingface-rl-example/
 │   │   ├── package.xml
 │   │   ├── setup.py
 ```
+
+## A Note on Component A: Driving the Robot
+In Component A (The Simulator), the robot does **not** move autonomously yet. Because Component A isolates just the physical simulation and the ROS 2 middleware, the "brain" (the RL Agent from Component C) hasn't been connected.
+
+The robot's wheels are driven by a ROS 2 plugin (like `libgazebo_ros_diff_drive.so`) attached to the simulated robot model. This plugin listens to a specific ROS 2 topic named `/cmd_vel` (Command Velocity). 
+
+To test Component A, we don't use AI. We manually publish messages to `/cmd_vel` to prove the wheels work. This is typically done in two ways:
+1. **Command Line (Topic Pub):** Executing `ros2 topic pub /cmd_vel geometry_msgs/msg/Twist ...` to force a constant speed.
+2. **Teleoperation:** Running a node like `ros2 run teleop_twist_keyboard teleop_twist_keyboard` to drive the robot manually with your keyboard (WASD keys).
+
+If the robot moves when you press 'W', Component A is successfully verified. It means the simulator is correctly receiving motor commands, clearing the way for Component B and C to take over the steering wheel later.
