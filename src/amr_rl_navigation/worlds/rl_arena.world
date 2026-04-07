@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="rl_training_world">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Outer walls (5m x 5m arena) -->
+    <model name="outer_walls">
+      <static>true</static>
+      <link name="wall_1">
+        <pose>2.5 0 0.5 0 0 0</pose>
+        <collision name="c1"><geometry><box><size>0.1 5.0 1</size></box></geometry></collision>
+        <visual name="v1"><geometry><box><size>0.1 5.0 1</size></box></geometry></visual>
+      </link>
+      <link name="wall_2">
+        <pose>-2.5 0 0.5 0 0 0</pose>
+        <collision name="c2"><geometry><box><size>0.1 5.0 1</size></box></geometry></collision>
+        <visual name="v2"><geometry><box><size>0.1 5.0 1</size></box></geometry></visual>
+      </link>
+      <link name="wall_3">
+        <pose>0 2.5 0.5 0 0 0</pose>
+        <collision name="c3"><geometry><box><size>5.0 0.1 1</size></box></geometry></collision>
+        <visual name="v3"><geometry><box><size>5.0 0.1 1</size></box></geometry></visual>
+      </link>
+      <link name="wall_4">
+        <pose>0 -2.5 0.5 0 0 0</pose>
+        <collision name="c4"><geometry><box><size>5.0 0.1 1</size></box></geometry></collision>
+        <visual name="v4"><geometry><box><size>5.0 0.1 1</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <!-- Internal static obstacles -->
+    <model name="obstacle_1">
+      <static>true</static>
+      <pose>1 1 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><cylinder><radius>0.2</radius><length>1</length></cylinder></geometry></collision>
+        <visual name="v"><geometry><cylinder><radius>0.2</radius><length>1</length></cylinder></geometry></visual>
+      </link>
+    </model>
+    <model name="obstacle_2">
+      <static>true</static>
+      <pose>-1 -1 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="c"><geometry><box><size>0.5 0.5 1</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.5 0.5 1</size></box></geometry></visual>
+      </link>
+    </model>
+  </world>
+</sdf>
