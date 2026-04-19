@@ -28,6 +28,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'test_env = amr_rl_navigation.test_env:main',
             'train_agent = amr_rl_navigation.train_agent:main',
             'evaluate_agent = amr_rl_navigation.evaluate_agent:main',
         ],
